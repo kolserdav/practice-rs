@@ -1,5 +1,8 @@
+use std::any::Any;
+
 trait Copy {
     fn copy(self) -> String;
+    fn as_any(&self) -> &dyn Any;
 }
 
 trait Parse {
@@ -12,6 +15,10 @@ struct S(String);
 impl Copy for S {
     fn copy(self) -> String {
         self.0.clone()
+    }
+
+    fn as_any(&self) -> &dyn Any {
+        self
     }
 }
 
